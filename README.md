@@ -4,6 +4,10 @@ The Birthday Problem is a classic probability puzzle that asks:
 
 **What is the probability that, in a group of $n$ people, at least two people share the same birthday?**
 
+or
+
+**How many people must be in a room for a 50% chance that at least two share a birthday?**
+
 ![Probability of Sahred Birthday](images/birthday-p(n).png)
 For the plot, use the following code, [View `birthday.py`](Python/birthday.py).  
 
