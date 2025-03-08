@@ -4,7 +4,8 @@ The Birthday Problem is a classic probability puzzle that asks:
 
 **What is the probability that, in a group of $n$ people, at least two people share the same birthday?**
 
-![Probability of Sahred Birthday](images/birthday-P(n).png)
+![Probability of Sahred Birthday](images/birthday-p(n).png)
+For the plot, use the following code, [View `birthday.py`](Python/birthday.py).  
 
 Surprisingly, the probability is much higher than most people intuitively expect. Below, we’ll break down the problem and derive the solution step by step, explaining each equation in detail.
 
@@ -18,16 +19,16 @@ Surprisingly, the probability is much higher than most people intuitively expect
 ---
 ## Steps
 ### Step 1: Define the Problem
-We want to calculate the probability $P(n)$ that at least two people in a group of $n$ share the same birthday. Instead of calculating this directly, it’s easier to calculate the complementary probability $P(\text{no shared birthdays})$ and then subtract it from 1.
+We want to calculate the probability $p(n)$ that at least two people in a group of $n$ share the same birthday. Instead of calculating this directly, it’s easier to calculate the complementary probability $p(\text{no shared birthdays})$ and then subtract it from 1.
 
 Thus: 
 
 $$
-P(n) = 1 - P(\text{no shared birthdays}). 
+p(n) = 1 - p(\text{no shared birthdays}). 
 $$
 
 
-### Step 2: Calculate $P(\text{no shared birthdays})$
+### Step 2: Calculate $p(\text{no shared birthdays})$
 The probability that no two people share a birthday can be calculated as follows:  
 
 1. The first person can have any birthday, so there are 365 possible choices out of 365:  
@@ -58,21 +59,27 @@ $$
 Since the birthdays are independent, we multiply these probabilities together to get the overall probability that no two people share a birthday:
 
 $$ 
-P(\text{no shared birthdays}) = \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365 - (n-1)}{365}.
+p(\text{no shared birthdays}) = \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365 - (n-1)}{365}.
 $$ 
 
 This can be written more compactly using factorial notation:
 
 $$ 
-P(\text{no shared birthdays}) = \frac{365!}{(365-n)! \cdot 365^n}.
+p(\text{no shared birthdays}) = \frac{365!}{(365-n)! \cdot 365^n} = \frac{_{365}P_n}{365^n}
 $$ 
 
+where the Permutation is defines as: 
 
-### Step 3: Calculate $P(n)$
+$$
+_{365}P_n = \frac{365!}{(365 - n)!}.
+$$
+
+
+### Step 3: Calculate $p(n)$
 Using the complementary probability, the probability that at least two people **share** a birthday is:
 
 $$ 
-P(n) = 1 - \frac{365!}{(365-n)! \cdot 365^n}.
+p(n) = 1 - \frac{365!}{(365-n)! \cdot 365^n} = 1 - \frac{_{365}P_n}{365^n}.
 $$ 
 
 
@@ -80,25 +87,25 @@ $$
 For large $n$, calculating factorials directly can be computationally intensive. Instead, we can use an approximation. Recall that:
 
 $$ 
-\ln(P(\text{no shared birthdays})) = \ln\left(\frac{365!}{(365-n)! \cdot 365^n}\right).
+\ln(p(\text{no shared birthdays})) = \ln\left(\frac{365!}{(365-n)! \cdot 365^n}\right).
 $$ 
 
 Using properties of logarithms and Stirling’s approximation, we can approximate the probability as:
 
 $$ 
-P(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
+p(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
 $$ 
 
 This approximation is particularly useful for large \( n \).
 
 
 ### Step 5: Solve for Specific Values of $n$
-Let’s calculate $P(n)$ for some specific values of $n$:
+Let’s calculate $p(n)$ for some specific values of $n$:
 
 1. For $n = 23$:
 
 $$
-P(23) = 1 - \frac{365!}{(365-23)! \cdot 365^{23}} \approx 0.507.
+p(23) = 1 - \frac{365!}{(365-23)! \cdot 365^{23}} \approx 0.507.
 $$ 
 
 This means there’s a 50.7% chance that at least two people in a group of 23 share a birthday.
@@ -106,7 +113,7 @@ This means there’s a 50.7% chance that at least two people in a group of 23 sh
 2. For $n = 50$:
 
 $$ 
-P(50) \approx 0.970.
+p(50) \approx 0.970.
 $$ 
    
 The probability rises to 97% for a group of 50.
@@ -114,7 +121,7 @@ The probability rises to 97% for a group of 50.
 3. For $n = 70$:
 
 $$ 
-P(70) \approx 0.999.
+p(70) \approx 0.999.
 $$ 
 
 The probability is nearly 100% for a group of 70.
@@ -129,7 +136,7 @@ The Birthday Problem can be generalized to other scenarios, such as:
 The general formula becomes:
 
 $$ 
-P(n) = 1 - \frac{D!}{(D-n)! \cdot D^n}.
+p(n) = 1 - \frac{D!}{(D-n)! \cdot D^n}.
 $$ 
 
 ---
@@ -145,23 +152,23 @@ The Birthday Problem demonstrates how probabilities can defy intuition. Even tho
 This will explain how we arrive at:
 
 $$
-P(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
+p(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
 $$
 
 ---
 ## Steps 
 
-### Step 1: Start with $P(\text{no shared birthdays})$
+### Step 1: Start with $p(\text{no shared birthdays})$
 The probability that no two people share a birthday in a group of $n$ is:
 
 $$
-P(\text{no shared birthdays}) = \frac{365!}{(365-n)! \cdot 365^n}.
+p(\text{no shared birthdays}) = \frac{365!}{(365-n)! \cdot 365^n}.
 $$
 
 Taking the natural logarithm of both sides:
 
 $$
-\ln(P(\text{no shared birthdays})) = \ln\left(\frac{365!}{(365-n)! \cdot 365^n}\right).
+\ln(p(\text{no shared birthdays})) = \ln\left(\frac{365!}{(365-n)! \cdot 365^n}\right).
 $$
 
  
@@ -205,7 +212,7 @@ $$
 Substitute these into the expression:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx \left[365 \ln(365) - 365\right] - \left[(365-n) \ln(365-n) - (365-n)\right] - n \ln(365).
+\ln(p(\text{no shared birthdays})) \approx \left[365 \ln(365) - 365\right] - \left[(365-n) \ln(365-n) - (365-n)\right] - n \ln(365).
 $$
 
  
@@ -214,19 +221,19 @@ $$
 Expand and simplify the terms:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx 365 \ln(365) - 365 - (365-n) \ln(365-n) + (365-n) - n \ln(365).
+\ln(p(\text{no shared birthdays})) \approx 365 \ln(365) - 365 - (365-n) \ln(365-n) + (365-n) - n \ln(365).
 $$
 
 Combine like terms:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx 365 \ln(365) - n \ln(365) - (365-n) \ln(365-n) - n.
+\ln(p(\text{no shared birthdays})) \approx 365 \ln(365) - n \ln(365) - (365-n) \ln(365-n) - n.
 $$
 
 Factor out $\ln(365)$ from the first two terms:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx (365 - n) \ln(365) - (365-n) \ln(365-n) - n.
+\ln(p(\text{no shared birthdays})) \approx (365 - n) \ln(365) - (365-n) \ln(365-n) - n.
 $$
 
  
@@ -272,25 +279,25 @@ $$
 Substitute this into the expression:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx (365-n) \ln(365) - (365-n) \left(\ln(365) - \frac{n}{365}\right) - n.
+\ln(p(\text{no shared birthdays})) \approx (365-n) \ln(365) - (365-n) \left(\ln(365) - \frac{n}{365}\right) - n.
 $$
 
 Simplify:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx (365-n) \ln(365) - (365-n) \ln(365) + \frac{(365-n)n}{365} - n.
+\ln(p(\text{no shared birthdays})) \approx (365-n) \ln(365) - (365-n) \ln(365) + \frac{(365-n)n}{365} - n.
 $$
 
 The $(365-n) \ln(365)$ terms cancel out:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx \frac{(365-n)n}{365} - n.
+\ln(p(\text{no shared birthdays})) \approx \frac{(365-n)n}{365} - n.
 $$
 
 Factor out $n$:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx n \left(\frac{365-n}{365} - 1\right).
+\ln(p(\text{no shared birthdays})) \approx n \left(\frac{365-n}{365} - 1\right).
 $$
 
 Simplify the term inside the parentheses:
@@ -302,16 +309,16 @@ $$
 Thus:
 
 $$
-\ln(P(\text{no shared birthdays})) \approx n \left(-\frac{n}{365}\right) = -\frac{n^2}{365}.
+\ln(p(\text{no shared birthdays})) \approx n \left(-\frac{n}{365}\right) = -\frac{n^2}{365}.
 $$
 
  
 
-### Step 6: Exponentiate to Find $P(\text{no shared birthdays})$
-Exponentiate both sides to solve for $P(\text{no shared birthdays})$:
+### Step 6: Exponentiate to Find $p(\text{no shared birthdays})$
+Exponentiate both sides to solve for $p(\text{no shared birthdays})$:
 
 $$
-P(\text{no shared birthdays}) \approx e^{-\frac{n^2}{365}}.
+p(\text{no shared birthdays}) \approx e^{-\frac{n^2}{365}}.
 $$
 
  
@@ -320,21 +327,21 @@ $$
 A more accurate approximation accounts for the fact that the number of unique pairs of people in a group of $n$ is $\frac{n(n-1)}{2}$, not $n^2$. Thus, we refine the exponent:
 
 $$
-P(\text{no shared birthdays}) \approx e^{-\frac{n(n-1)}{2 \cdot 365}}.
+p(\text{no shared birthdays}) \approx e^{-\frac{n(n-1)}{2 \cdot 365}}.
 $$
 
 
-### Step 8: Compute $P(n)$
+### Step 8: Compute $p(n)$
 Finally, the probability that at least two people share a birthday is:
 
 $$
-P(n) = 1 - P(\text{no shared birthdays}).
+p(n) = 1 - p(\text{no shared birthdays}).
 $$
 
 Substitute the approximation:
 
 $$
-P(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
+p(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
 $$
 
 ---
@@ -343,13 +350,13 @@ $$
 Using properties of logarithms and Stirling’s approximation, we derived the approximation:
 
 $$ 
-P(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
+p(n) \approx 1 - e^{-\frac{n(n-1)}{2 \cdot 365}}.
 $$ 
 
 This formula is particularly useful for calculating the probability of shared birthdays without computing large factorials directly. For example, when $n = 23$:
 
 $$
-P(23) \approx 1 - e^{-\frac{23 \cdot 22}{2 \cdot 365}} \approx 1 - e^{-0.693} \approx 1 - 0.500 \approx 0.500.
+p(23) \approx 1 - e^{-\frac{23 \cdot 22}{2 \cdot 365}} \approx 1 - e^{-0.693} \approx 1 - 0.500 \approx 0.500.
 $$
 
 This matches the exact result of approximately **50.7%**.
