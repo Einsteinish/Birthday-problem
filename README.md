@@ -364,3 +364,10 @@ p(23) \approx 1 - e^{-\frac{23 \cdot 22}{2 \cdot 365}} \approx 1 - e^{-0.693} \a
 $$
 
 This matches the exact result of approximately **50.7%**.
+
+
+---
+
+[Watch the Youtube video here](https://youtu.be/L3I0YuoyhnM)
+
+[![YouTube Video Thumbnail](https://img.youtube.com/vi/L3I0YuoyhnM/0.jpg)](https://www.youtube.com/watch?v=L3I0YuoyhnM)
